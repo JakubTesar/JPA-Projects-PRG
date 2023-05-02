@@ -1,3 +1,5 @@
-TaskBean.class
-TaskEntity.class
-Status.class
+kanban\TaskBean.class
+kanban\Status.class
+recenze\RecenzeBean.class
+kanban\TaskEntity.class
+recenze\RecenzeEntity.class

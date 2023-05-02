@@ -10,112 +10,11 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"/>
 </h:head>
 
-<h:body styleClass="bg-dark text-white m-5">
-    <div>
-        <h3>Kanban</h3>
-    </div>
-    <div>
-        <h1>Tasks</h1>
-        <h:form>
-            <h:outputLabel value="Create a new task"></h:outputLabel>
-            <div>
-                <h:inputText styleClass="form-control my-2 w-25" value="#{taskEntity.name}"></h:inputText>
-                <h:commandButton styleClass="btn btn-primary" value="Create"
-                                 action="#{taskBean.addTask(taskEntity.name)}"></h:commandButton>
-            </div>
-        </h:form>
-    </div>
-
-    <div class="d-flex justify-content-between align-items-start">
-        <div class="w-100 d-flex justify-content-center flex-column">
-            <h2>Backlog</h2>
-            <ui:repeat value="#{taskBean.backlogs}" var="t">
-                <div>
-                    <p>#{t.name}</p>
-                    <div>
-                        <h:form>
-                            <h:commandButton styleClass="btn btn-danger disabled" value="Prev">
-                            </h:commandButton>
-                            <h:commandButton styleClass="btn btn-primary ms-5" value="Next"
-                                             action="#{taskBean.increment(t)}">
-                            </h:commandButton>
-                        </h:form>
-                    </div>
-                </div>
-            </ui:repeat>
-        </div>
-        <div class="w-100 d-flex justify-content-center flex-column">
-            <h2>In Progress</h2>
-            <ui:repeat value="#{taskBean.inProgress}" var="t">
-                <div>
-                    <p>#{t.name}</p>
-                    <div><h:form>
-                        <h:commandButton styleClass="btn btn-danger" value="Prev"
-                                         action="#{taskBean.decrement(t)}">
-                        </h:commandButton>
-                        <h:commandButton styleClass="btn btn-primary ms-5" value="Next"
-                                         action="#{taskBean.increment(t)}">
-                        </h:commandButton>
-                    </h:form>
-                    </div>
-                </div>
-            </ui:repeat>
-        </div>
-        <div class="w-100 d-flex justify-content-center flex-column">
-            <h2>In Rewiev</h2>
-            <ui:repeat value="#{taskBean.inReview}" var="t">
-                <div>
-                    <p>#{t.name}</p>
-                    <div>
-                        <h:form>
-                            <h:commandButton styleClass="btn btn-danger" value="Prev"
-                                             action="#{taskBean.decrement(t)}">
-                            </h:commandButton>
-                            <h:commandButton styleClass="btn btn-primary ms-5" value="Next"
-                                             action="#{taskBean.increment(t)}">
-                            </h:commandButton>
-                        </h:form>
-                    </div>
-                </div>
-            </ui:repeat>
-        </div>
-        <div class="w-100 d-flex justify-content-center flex-column">
-            <h2>Test</h2>
-            <ui:repeat value="#{taskBean.test}" var="t">
-                <div>
-                    <p>#{t.name}</p>
-                    <div>
-                        <h:form>
-                            <h:commandButton styleClass="btn btn-danger" value="Prev"
-                                             action="#{taskBean.decrement(t)}">
-                            </h:commandButton>
-                            <h:commandButton styleClass="btn btn-primary ms-5" value="Next"
-                                             action="#{taskBean.increment(t)}">
-                            </h:commandButton>
-                        </h:form>
-                    </div>
-                </div>
-            </ui:repeat>
-        </div>
-        <div class="w-100 d-flex justify-content-center flex-column">
-            <h2>Finished</h2>
-            <ui:repeat value="#{taskBean.finished}" var="t">
-                <div>
-                    <p>#{t.name}</p>
-                    <div>
-                        <h:form>
-                            <h:commandButton styleClass="btn btn-danger" value="Prev"
-                                             action="#{taskBean.decrement(t)}">
-                            </h:commandButton>
-                            <h:commandButton styleClass="btn btn-primary ms-5 disabled" value="Next">
-                            </h:commandButton>
-                        </h:form>
-                    </div>
-                </div>
-            </ui:repeat>
-        </div>
+<h:body styleClass="bg-dark d-flex justify-content-center m-5">
+    <div class="d-flex justify-content-center flex-column w-25 bg-dark">
+        <h:link class="btn btn-primary my-4" value="Kanban" outcome="Kanban/index.xhtml"/>
+        <h:link class="btn btn-primary my-4" value="Recenze" outcome="Recenze/index.xhtml"/>
     </div>
 </h:body>
-
 
 </html>
