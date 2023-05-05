@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"/>
+</h:head>
+
+<h:body styleClass="bg-dark text-white m-5">
+   <div>
+      <h1>Students</h1>
+      <h:form>
+         <h:outputLabel value="Edit a student"/>
+         <div>
+            <h:outputLabel value="First name"/>
+            <h:inputText styleClass="form-control my-2 w-25" value="#{studentEntity.firstName}"/>
+            <h:outputLabel value="Last name"/>
+            <h:inputText styleClass="form-control my-2 w-25" value="#{studentEntity.lastName}"/>
+            <h:outputLabel value="Date of birth"/>
+            <h:inputText styleClass="form-control my-2 w-25" value="#{studentEntity.dateOfBirth}"/>
+            <h:outputLabel value="Grade" />
+            <h:inputText styleClass="form-control my-2 w-25" value="#{studentEntity.grade}"/>
+            <h:commandButton styleClass="btn btn-primary" value="Create"
+                             action="#{studentBean.editStudent(studentEntity.firstName, studentEntity.lastName, studentEntity.dateOfBirth, studentEntity.grade)}">
+               <f:param name="id" value="#{studentBean.IDParam}"/>
+            </h:commandButton>
+
+         </div>
+      </h:form>
+      <div class="m-5 d-flex justify-content-center w-25">
+         <h:link styleClass="btn btn-primary" outcome="index.xhtml" value="Back"/>
+      </div>
+   </div>
+</h:body>
+
+
+</html>

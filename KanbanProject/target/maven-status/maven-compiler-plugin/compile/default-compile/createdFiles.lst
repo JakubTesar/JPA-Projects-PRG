@@ -1,5 +1,9 @@
 kanban\TaskBean.class
 kanban\Status.class
+students\StudentBean.class
+students\StudentEntity.class
 recenze\RecenzeBean.class
 kanban\TaskEntity.class
+recenze\RecenzeDTO.class
 recenze\RecenzeEntity.class
+students\FactoryManagerService.class

@@ -36,9 +36,9 @@
                         <h:form>
                             <h:outputLabel value="EDIT RECENZE"/>
                             <div class="d-flex">
-                                <h:inputText styleClass="form-control my-2 w-25" value="#{t.content}"/>
+                                <h:inputText styleClass="form-control my-2 w-25" value="#{recenzeDTO.content}"/>
                                 <h:commandButton styleClass="btn btn-warning ms-5" value="✏"
-                                                 action="#{recenzeBean.updateRecenze(t.recenzeId, t.content)}">
+                                                 action="#{recenzeBean.updateRecenze(t.recenzeId)}">
                                 </h:commandButton>
                             </div>
                             <h:commandButton styleClass="btn btn-danger" value="💣"
