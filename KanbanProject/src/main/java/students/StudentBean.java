@@ -18,7 +18,7 @@ import java.util.Map;
 public class StudentBean {
     private final FactoryManagerService fMS = new FactoryManagerService();
 
-    private int avgGradeStudent = 0;
+    private float avgGradeStudent = 0;
 
     public List<StudentEntity> getAllStudents(){
         EntityManager em = fMS.getEmf().createEntityManager();
@@ -56,7 +56,6 @@ public class StudentBean {
         et.commit();
         em.close();
     }
-
     public void editStudent(String firstName, String lastName, String dateOfBirth, int grade){
         EntityManager em = fMS.getEmf().createEntityManager();
 
@@ -80,5 +79,29 @@ public class StudentBean {
     public Integer getIDParam() {
         Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
         return Integer.parseInt(params.get("id"));
+    }
+
+
+    public float getAvgGradeStudent() {
+        EntityManager em = fMS.getEmf().createEntityManager();
+
+        // SELECT * FROM ArticleEntity
+        TypedQuery<StudentEntity> query = em.createQuery("SELECT students FROM StudentEntity AS students", StudentEntity.class);
+        List<StudentEntity> result = query.getResultList();
+        int sum = 0;
+        int count = 0;
+        for (StudentEntity s: result) {
+            sum += s.getGrade();
+            count++;
+        }
+        if (count != 0) {
+            avgGradeStudent = sum / count;
+        }
+        em.close();
+        return avgGradeStudent;
+    }
+
+    public void setAvgGradeStudent(float avgGradeStudent) {
+        this.avgGradeStudent = avgGradeStudent;
     }
 }
