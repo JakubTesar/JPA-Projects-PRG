@@ -17,7 +17,6 @@ import java.util.Map;
 @RequestScoped
 public class StudentBean {
     private final FactoryManagerService fMS = new FactoryManagerService();
-
     private float avgGradeStudent = 0;
 
     public List<StudentEntity> getAllStudents(){
