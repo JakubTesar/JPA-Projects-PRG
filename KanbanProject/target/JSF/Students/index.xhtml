@@ -25,7 +25,9 @@
             <h:outputLabel value="Grade" />
             <h:inputText styleClass="form-control my-2 w-25" value="#{studentEntity.grade}"/>
             <h:commandButton styleClass="btn btn-primary" value="Create"
-                             action="#{studentBean.addNewStudent(studentEntity.firstName, studentEntity.lastName, studentEntity.dateOfBirth, studentEntity.grade)}"/>
+                             action="#{studentBean.editStudent(studentEntity.firstName, studentEntity.lastName, studentEntity.dateOfBirth, studentEntity.grade)}">
+               <f:param name="id" value="#{studentBean.IDParam}"/>
+            </h:commandButton>
          </div>
       </h:form>
    </div>

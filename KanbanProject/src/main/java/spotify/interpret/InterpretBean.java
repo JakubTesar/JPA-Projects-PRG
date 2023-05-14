@@ -32,7 +32,7 @@ public class InterpretBean {
     public List<InterpretEntity> getAllInterprets(){
         EntityManager em = fMS.getEmf().createEntityManager();
 
-        TypedQuery<InterpretEntity> query = em.createQuery("SELECT spotify.interpret.InterpretEntity FROM InterpretEntity AS interprets", InterpretEntity.class);
+        TypedQuery<InterpretEntity> query = em.createQuery("SELECT interprets FROM InterpretEntity AS interprets", InterpretEntity.class);
         List<InterpretEntity> result = query.getResultList();
         em.close();
         return result;
