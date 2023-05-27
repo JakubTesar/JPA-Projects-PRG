@@ -25,7 +25,7 @@ public class AlbumBean {
         EntityManager em = fMS.getEmf().createEntityManager();
 
         TypedQuery<AlbumEntity> query = em.createQuery("SELECT album FROM AlbumEntity AS album WHERE album.interpret.interpretId = :id", AlbumEntity.class);
-        query.setParameter("id", getIDParam());
+        query.setParameter("id", getIDInterpretParam());
         List<AlbumEntity> result = query.getResultList();
         em.close();
         return result;
@@ -40,7 +40,12 @@ public class AlbumBean {
         album.setName(name);
         album.setDescription(description);
         album.setDateOfRelease(LocalDate.now().toString());
-       // album.setInterpret();
+
+        TypedQuery<InterpretEntity> query = em.createQuery("SELECT interpret FROM InterpretEntity AS interpret WHERE interpret.interpretId = :id", InterpretEntity.class);
+        query.setParameter("id", getIDInterpretParam());
+        List<InterpretEntity> result = query.getResultList();
+        album.setInterpret(result.stream().findFirst().get());
+
         em.persist(album);
         et.commit();
         em.close();
@@ -51,7 +56,7 @@ public class AlbumBean {
 
         EntityTransaction et = em.getTransaction();
         et.begin();
-        Query query = em.createQuery("DELETE FROM AlbumEntity WHERE albumId = :id");
+        Query query = em.createQuery("DELETE FROM AlbumEntity WHERE AlbumId = :id");
         query.setParameter("id", id);
         query.executeUpdate();
 
@@ -62,9 +67,9 @@ public class AlbumBean {
     public void editAlbum(String name, String description) {
         EntityManager em = fMS.getEmf().createEntityManager();
 
-        TypedQuery<InterpretEntity> query = em.createQuery("SELECT album FROM AlbumEntity AS album WHERE album.AlbumId = :id", InterpretEntity.class);
-        query.setParameter("id", getIDParam());
-        InterpretEntity result = query.getSingleResult();
+        TypedQuery<AlbumEntity> query = em.createQuery("SELECT album FROM AlbumEntity AS album WHERE album.AlbumId = :id", AlbumEntity.class);
+        query.setParameter("id", getIDAlbumParam());
+        AlbumEntity result = query.getSingleResult();
 
         EntityTransaction et = em.getTransaction();
         et.begin();
@@ -77,8 +82,23 @@ public class AlbumBean {
         em.close();
     }
 
-    public Integer getIDParam() {
+    public Integer getInterpretIdFromAlbum(){
+        EntityManager em = fMS.getEmf().createEntityManager();
+
+        TypedQuery<AlbumEntity> query = em.createQuery("SELECT album FROM AlbumEntity AS album WHERE album.AlbumId = :id", AlbumEntity.class);
+        query.setParameter("id", getIDAlbumParam());
+        AlbumEntity result = query.getSingleResult();
+        em.close();
+        return result.getInterpret().getInterpretId();
+
+    }
+
+    public Integer getIDInterpretParam() {
         Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
-        return Integer.parseInt(params.get("id"));
+        return Integer.parseInt(params.get("interpretId"));
+    }
+    public Integer getIDAlbumParam() {
+        Map<String, String> params = FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap();
+        return Integer.parseInt(params.get("albumId"));
     }
 }

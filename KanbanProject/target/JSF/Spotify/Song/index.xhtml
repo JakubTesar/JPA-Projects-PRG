@@ -5,7 +5,56 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
-<f:view>
-    <h:outputLabel value="Hello, world"/>
-</f:view>
+
+<h:head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css"/>
+</h:head>
+
+<h:body styleClass="bg-dark text-white m-5">
+    <div>
+        <h1>Songs</h1>
+        <h:form>
+            <h:outputLabel value="Add a new Song"/>
+            <div>
+                <h:outputLabel value="Name"/>
+                <h:inputText styleClass="form-control my-2 w-25" value="#{songEntity.name}"/>
+                <h:outputLabel value="Description"/>
+                <h:inputText styleClass="form-control my-2 w-25" value="#{songEntity.description}"/>
+                <h:commandButton styleClass="btn btn-primary" value="Create"
+                                 action="#{songBean.createSong(songEntity.name, songEntity.description)}">
+                    <f:param name="albumId" value="#{songBean.IDAlbumParam}"/>
+                </h:commandButton>
+            </div>
+        </h:form>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-start my-5">
+        <div class="w-100 d-flex justify-content-center flex-wrap gap-5">
+            <h2>Songs</h2>
+            <ui:repeat value="#{songBean.songsByID}" var="s">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-body bg-dark">
+                        <h5 class="card-title">#{s.name}</h5>
+                        <p class="card-text">#{s.description}</p>
+                        <h:form styleClass="d-flex">
+                            <div>
+                                <h:commandButton styleClass="btn btn-danger mx-2" value="💣"
+                                                 action="#{songBean.deleteSong(s.songId)}">
+                                    <f:param name="albumId" value="#{songBean.IDAlbumParam}"/>
+                                </h:commandButton>
+                            </div>
+                            <div>
+                                <h:link styleClass="btn btn-info mx-2" outcome="edit.xhtml" value="✏">
+                                    <f:param name="songId" value="#{s.songId}"/>
+                                </h:link>
+                            </div>
+                        </h:form>
+                    </div>
+                </div>
+            </ui:repeat>
+        </div>
+    </div>
+</h:body>
+
+
 </html>
