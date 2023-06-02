@@ -19,7 +19,7 @@ public class InterpretEntity {
     @Column
     private String description;
 
-    @OneToMany(mappedBy = "interpret")
+    @OneToMany(mappedBy = "interpret", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AlbumEntity> albumEntities;
 
     public int getInterpretId() {

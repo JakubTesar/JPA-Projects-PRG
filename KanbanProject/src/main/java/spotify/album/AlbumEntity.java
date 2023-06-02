@@ -25,7 +25,7 @@ public class AlbumEntity {
     @ManyToOne()
     private InterpretEntity interpret;
 
-    @OneToMany(mappedBy ="album")
+    @OneToMany(mappedBy ="album", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SongEntity> songEntities;
 
     public int getAlbumId() {
