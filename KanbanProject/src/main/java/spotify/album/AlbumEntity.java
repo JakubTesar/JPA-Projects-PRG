@@ -25,6 +25,14 @@ public class AlbumEntity {
     @ManyToOne()
     private InterpretEntity interpret;
 
+    public List<SongEntity> getSongEntities() {
+        return songEntities;
+    }
+
+    public void setSongEntities(List<SongEntity> songEntities) {
+        this.songEntities = songEntities;
+    }
+
     @OneToMany(mappedBy ="album", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<SongEntity> songEntities;
 

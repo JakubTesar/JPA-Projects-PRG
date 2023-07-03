@@ -42,7 +42,7 @@ public class InterpretBean {
 
         EntityTransaction et = em.getTransaction();
         et.begin();
-        Query query = em.createQuery("DELETE FROM InterpretEntity WHERE interpretId = :id");
+        Query query = em.createQuery("DELETE FROM InterpretEntity ie WHERE ie.interpretId = :id");
         query.setParameter("id", id);
         query.executeUpdate();
 
@@ -58,6 +58,7 @@ public class InterpretBean {
 
         EntityTransaction et = em.getTransaction();
         et.begin();
+
 
         result.setName(name);
         result.setDescription(description);

@@ -36,8 +36,10 @@
                         <p class="card-text">#{i.description}</p>
                         <h:form styleClass="d-flex">
                             <div>
+                                <div>#{i.interpretId}</div>
                                 <h:commandButton styleClass="btn btn-danger mx-2" value="💣"
-                                                 action="#{interpretBean.deleteInterpret(i.interpretId)}"/>
+                                                 action="#{interpretBean.deleteInterpret(i.interpretId)}">
+                                </h:commandButton>
                             </div>
                             <div>
                                 <h:link styleClass="btn btn-info mx-2" outcome="edit.xhtml" value="✏">

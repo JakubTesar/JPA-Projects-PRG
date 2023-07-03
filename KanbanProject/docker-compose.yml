@@ -1,0 +1,20 @@
+version: "3.1"
+
+services:
+  DBS-mariadb:
+    image: mariadb:latest
+    restart: always
+    ports:
+      - 3309:3306
+    environment:
+      MARIADB_ALLOW_EMPTY_ROOT_PASSWORD: true
+
+  DBS-phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8089:80
+    environment:
+      PMA_HOST: DBS-mariadb
+      PMA_USER: root
+      PMA_PASSWORD: rootpass
